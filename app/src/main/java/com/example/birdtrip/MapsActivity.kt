@@ -9,6 +9,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_maps.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -35,9 +36,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        // とりあえずの緯度経度
+        val osakaStation = LatLng(34.702423, 135.495972)
+        //初期地のカメラの場所
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(osakaStation, 16.0f))
+        //初期地のとこにマーカ設置
+        mMap.addMarker(MarkerOptions()
+            .title("大阪駅")
+            .snippet("JR西日本　大阪環状線の駅")
+            .position(osakaStation)
+            .zIndex(2.0f)
+        )
+
+
     }
 }
